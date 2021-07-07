@@ -1,0 +1,74 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * translations plugin for Craft CMS 3.x
+ *
+ * translations Settings.twig
+ *
+ * @author    ip
+ * @copyright Copyright (c) 2021 ip
+ * @link      http://craft-plugin.local/
+ * @package   Translations
+ * @since     1.0.0
+ */
+#}
+{% extends parentLayout ?? '_layouts/cp' %}
+
+{% import "_includes/forms" as forms %}
+{% set title = "Translator Pro"|t %}
+{% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\translatorpro\\TranslatorproAsset") %}
+{% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% block content %}
+
+<div id="wrapper">
+ 
+    <h4 for="engstring">{{'Search'|t}}</h4>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+    <div class="flex-grow texticon search icon clearable">
+        <input type="text" class="text trans_search_bar" onkeyup="myFunction()"  placeholder="{{'Search'|t}}" aria-label="Search" id="myInput">
+    </div>
+    <div class="string_table">
+        <table id="records_table" border='1' width="100%" class="paginated">
+            <thead class="trans_table_head">
+                <tr>
+                    <th align="center">{{'Source string (en-US)'|t}}</th>
+                    {% set sites = craft.app.sites.getAllSites() %}
+                    {% for site in sites %}
+		                {% if site.enabled %}
+                            {# {% set message = site.language|split('-')[0]|upper ~ ' ' ~ 'string'|t %} #}
+                                <th>{{site }}</th>
+		                    {% endif %}
+                    {% endfor %}
+                    <th align="center">{{'Actions'|t}}</th>
+                </tr>
+            </thead>
+            {% for res in result %}
+                <tbody>
+                    <tr>
+                        <td class="colwidth-test">{{res['message'] }}</td>
+                        {% set sites = craft.app.sites.getAllSites() %}
+                        {% for site in sites %}
+                {% if site.enabled %}
+                            {% set message = 'message_' ~ site.language|split('-')[0] %}
+                            <td class="colwidth-test">{{ res[message] }}</td>
+                {% endif %}
+                        {% endfor %}
+                        <td id="add"><a href="translator-pro/edit?id={{res['id']}}&destination={{ craft.request.getHostInfo() ~ craft.request.getRequestUri() }}">{{'Add/Edit'|t}}</a></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    
+    
+    </div>
+</div>
+
+{% endblock %}

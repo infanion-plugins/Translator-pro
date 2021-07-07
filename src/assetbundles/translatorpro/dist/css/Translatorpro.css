@@ -1,0 +1,89 @@
+/**
+ * Translator Pro plugin for Craft CMS 3.x
+ *
+ * Translator Pro is an easy to use and powerful solution to provide multilinguality for your Craft website, Craft Commerce and other plugins. With this plugin, you can easily manage the required translations in multiple languages.
+ *
+ * @link      https://www.infanion.com/
+ * @copyright Copyright (c) 2021 Infanion
+ */
+
+ #wrapper {
+    display:table;
+    width:100%;
+}
+
+td, th, tr{
+    border: none;
+    text-align: left;
+    padding: 20px;
+  }
+  
+table {
+    font-family: arial, sans-serif;
+    border :1px solid #f3f7fc;
+    background-color:white;
+    border-radius:4px;
+    margin-bottom: 5px;       
+}
+  .string_table {
+    width: 100%;
+    margin-top: 33px;
+    float:left;
+   }
+   #TxtSearch {
+      height: 25px;
+   }
+   #pagination {
+    width: 100%;
+    text-align: center;
+    }
+
+    #pagination ul li {
+    display: inline;
+    margin-left: 10px;
+    }
+    .pg-goto{
+    margin : 5px 5px 0px 5px;
+    padding:5px;
+    width: 32px;
+    height: 32px;
+    background-color: #f3f7fc;
+    justify-content: center;
+    border-radius: 4px;
+    align-items: center;
+    box-shadow: inset 0 0 0 1px rgba(51, 64, 77, 0.1);
+    cursor: pointer;
+
+    }
+    .pg-goto:hover{
+        text-decoration: none;
+        box-shadow: inset 0 0 0 1px #0B69A3;
+    }
+    .active{
+        text-decoration: none;
+        box-shadow: inset 0 0 0 1px #0B69A3;
+    }
+    .trans_search_bar{
+       width: 50%;
+   }
+   .trans_table_head{
+       background-color: #f3f7fc;
+    }
+    .pager{
+       background-color: #f3f7fc;
+       padding: 7px;
+       margin-top: -5px;
+    }
+    .export-btn{
+       
+    }
+    .clearafter{
+        display:flex; 
+        justify-content:flex-end;
+        width: 600px;
+        padding:0;
+    }
+
+    .colwidth-test{
+        width: 20%;
+    }

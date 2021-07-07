@@ -1,0 +1,40 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * translations plugin for Craft CMS 3.x
+ *
+ * translations index.twig
+ *
+ * @author    ip
+ * @copyright Copyright (c) 2021 ip
+ * @link      http://craft-plugin.local/
+ * @package   Translations
+ * @since     1.0.0
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("ip\\translations\\assetbundles\\translations\\TranslationsAsset") %}
+{% do view.registerAssetBundle("ip\\translations\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set docsUrl = "???" %}
+
+{% set title = "translations" %}
+
+{% set pluginCpUrl = url('translations') %}
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@ip/translations/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('translations') }}</a>
+    </div>
+{% endset %}
+
+{% set content %}
+    <h2>{{ "Index CP Section body goes here"|t('translations') }}</h2>
+    <img src="{{ iconUrl }}" height="64" width="64" />
+    <p class="textline"></p>
+{% endset %}

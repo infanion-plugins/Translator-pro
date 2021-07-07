@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * translations plugin for Craft CMS
+ *
+ * TranslationsField Field Settings
+ *
+ * @author    ip
+ * @copyright Copyright (c) 2021 ip
+ * @link      http://craft-plugin.local/
+ * @package   Translations
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("ip\\translations\\assetbundles\\translations\\TranslationsAsset") %}
+
+{{ forms.textField({
+    label: 'Some Attribute',
+    instructions: 'Enter some attribute here.',
+    id: 'someAttribute',
+    name: 'someAttribute',
+    value: field['someAttribute']})
+}}

@@ -1,0 +1,158 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * translations plugin for Craft CMS 3.x
+ *
+ * translations Settings.twig
+ *
+ * @author    ip
+ * @copyright Copyright (c) 2021 ip
+ * @link      http://craft-plugin.local/
+ * @package   Translations
+ * @since     1.0.0
+ */
+#}
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("ip\\translations\\assetbundles\\translations\\TranslationsAsset") %}
+{% block content %}
+<div id="wrapper">
+    <div id="row">
+<div id="first">
+<h4 for="engstring">{{'Source string'|t}}</h4>
+<input class="langfields" id="eng_string" type="text"  name="engstring" onkeyup="myFunction()">
+</div>
+{% set sites = craft.app.sites.getAllSites() %}
+{% for site in sites %}
+{% if site.enabled %}
+                        {% set lang = site.language|split('-')[0] %}
+<div id="first">
+<h4 for="{{lang}}string">{{lang|upper ~ ' ' ~ 'string'|t}}</h4>
+<input class="langfields" id="{{lang}}_string" type="text"  name="{{lang}}string">
+</div>
+{% endif %}
+{% endfor %}
+<div id="fourth">
+<button class="search_btn">{{'Search'|t}}</button>    
+</div>
+
+</div>
+<div class="string_table">
+    <table id="records_table" border='1' width="100%">
+            <thead>
+                <tr>
+                    <th align="center">{{'Source string'|t}}</th>
+                    {% set sites = craft.app.sites.getAllSites() %}
+                    {% for site in sites %}
+		      {% if site.enabled %}
+                        {% set message = site.language|split('-')[0]|upper ~ ' ' ~ 'string'|t %}
+                          <th>{{message }}</th>
+		      {% endif %}
+                    {% endfor %}
+                    <th align="center">{{'Actions'|t}}</th>
+                </tr>
+            </thead>
+            {% for res in result %}
+            <tbody>
+                <tr>
+                    <td>{{res['message'] }}</td>
+                    {% set sites = craft.app.sites.getAllSites() %}
+                    {% for site in sites %}
+		      {% if site.enabled %}
+                        {% set message = 'message_' ~ site.language|split('-')[0] %}
+                          <td>{{ res[message] }}</td>
+		      {% endif %}
+                    {% endfor %}
+                    <td id="add"><a>{{'Add/Edit translation'|t}}</a></td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+    <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("eng_string");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("records_table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+  </div>
+  <div class="modal" style="display: none">
+    <div class="popup_close">
+      <a class="close" href="#">X</a>
+    </div>
+  </div>
+</div>
+<style>
+    #wrapper {
+        display:table;
+        width:100%;
+    }
+    #row {
+        width:100%;
+        float:left;
+    }
+    #first {
+        float:left;
+        width:20%;
+    }
+    #fourth {
+        float:left;
+        width:20%;
+        
+    }
+    .langfields {
+        width:68%;
+        padding:5px;
+    }
+    .search_btn {
+        width: 70%;
+        background-color: #EB4D4B;
+        color: #ffff;
+        padding:10px;
+        border-radius: 10px;
+        margin-top:25px !important;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 1px;
+      }
+      
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+      }
+      .string_table {
+        width: 100%;
+        margin-top: 33px;
+        float:left;
+       }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function (e) {
+    $(".open").click(function (e) {
+        console.log(e)
+      $(".modal").css("display", "block");
+    });
+    $(".close").click(function () {
+      $(".modal").css("display", "none");
+    });
+  });
+</script>
+{% endblock %}

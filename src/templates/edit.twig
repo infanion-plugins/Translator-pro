@@ -1,0 +1,47 @@
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{# The title of this CP section #}
+{% set title = "Add/Edit translation"|t %}
+
+{% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\translatorpro\\TranslatorproAsset") %}                                                              
+{% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}                                                          
+
+{# The content of the CP Section#}
+
+{% set content %}
+  {% for res in result %}
+    <form class="field toolbar" action="{{url('translator-pro/save')}}?destination={{craft.request.getQuery('destination')}}" method="post" accept-charset="UTF-8">
+        {{ csrfInput() }}
+        <div class="field " id="title-field-source">
+            <label for="source">{{'SOURCE STRING (en-US)'|t}}</label>
+            <div class="input ltr">
+                <input class="text fullwidth" style="max-width:600px;" type="text" id="source" name="source" value="{{res['message']}}" readonly />
+                <input class="text fullwidth" style="max-width:600px;" id="trans_id" name="id" value="{{res['id']}}" type="hidden" />
+            </div>
+        </div>
+        {% set sites = craft.app.sites.getAllSites() %}                                                                                               
+        {% for site in sites %}                                                                                                                       
+          {% if site.enabled %}                                                                                                                       
+            {% set lang = site.language|split('-')[0] %}                                                                              
+              {% set message = 'message_' ~ lang %}                                                                              
+              <div class="field " id="title-field-{{lang}}">
+                  <label for="{{site}}">{{site|upper|t}}</label>
+                  <div class="input ltr">
+                      <input class="text fullwidth" style="max-width:600px;" type="text" id="{{lang}}" name="{{lang}}" value="{{res[message]}}" />
+                  </div>
+              </div>
+          {% endif %}                                                                                                                                 
+        {% endfor %}                                                                                                                                  
+
+        <div class="buttons clearafter">
+            <button class="btn submit export-btn" name="submit" value="create">
+                {{ 'Save'|t }}
+            </button>
+          </div>
+        </div>
+    </form>
+  {% endfor %}                                                                                                                                  
+{% endset %}
+
