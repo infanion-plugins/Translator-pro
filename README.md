@@ -16,9 +16,11 @@ Override of default 't' function (both twig and php usage)
 - Website translations will be shown dependent on will apply to website according to the users language
 - The possibility to manage translations for development strings
 
+
 ## Documentation
 
 Visit the [Translator Pro Plugin page](https://github.com/infanion-plugins/Translator-pro) for all documentation, guides and developer resources.
+
 
 ## Requirements
 
@@ -35,7 +37,7 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require ip/translator-pro
+        composer require ip-craft/translator-pro
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Translator Pro.
 

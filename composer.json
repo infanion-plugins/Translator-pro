@@ -1,5 +1,5 @@
 {
-    "name": "ip/translator-pro",
+    "name": "ip-craft/translator-pro",
     "description": "The Translator Pro is an easy to use and powerful solution to provide multilinguality for your Craft website, Craft Commerce and other plugins. With this plugin, you can easily manage the required translations in multiple languages.",
     "type": "craft-plugin",
     "version": "1.0.0",
