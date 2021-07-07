@@ -43,7 +43,7 @@ To install the plugin, follow these instructions.
 
 ## Support
 
-Get in touch with us via the mail [Translator Pro Support mail](support-craftplugins@infanion.com) or by [creating a Github issue](https://github.com/infanion-plugins/Translator-pro/issues)
+Get in touch with us via the mail [Translator Pro Support mail](mailto:support-craftplugins@infanion.com) or by [creating a Github issue](https://github.com/infanion-plugins/Translator-pro/issues)
 
 
 ## Translator Pro Roadmap
