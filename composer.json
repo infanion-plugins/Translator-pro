@@ -2,7 +2,7 @@
     "name": "ip-craft/translator-pro",
     "description": "The Translator Pro is an easy to use and powerful solution to provide multilinguality for your Craft website, Craft Commerce and other plugins. With this plugin, you can easily manage the required translations in multiple languages.",
     "type": "craft-plugin",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "keywords": [
         "craft",
         "cms",
@@ -24,7 +24,10 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0",
+        "craftcms/cms": "^3.5.0"
+    },
+    "require-dev": {
+        "craftcms/cms": "^3.5.0",
         "codeception/codeception": "^3.0",
         "vlucas/phpdotenv": "^3.0"
     },

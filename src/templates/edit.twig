@@ -3,7 +3,7 @@
 {% import "_includes/forms" as forms %}
 
 {# The title of this CP section #}
-{% set title = "Add/Edit translation"|t %}
+{% set title = "Add/Edit translation"|t('translator-pro') %}
 
 {% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\translatorpro\\TranslatorproAsset") %}                                                              
 {% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}                                                          
@@ -15,7 +15,7 @@
     <form class="field toolbar" action="{{url('translator-pro/save')}}?destination={{craft.request.getQuery('destination')}}" method="post" accept-charset="UTF-8">
         {{ csrfInput() }}
         <div class="field " id="title-field-source">
-            <label for="source">{{'SOURCE STRING (en-US)'|t}}</label>
+            <label for="source">{{'SOURCE STRING (en-US)'|t('translator-pro')}}</label>
             <div class="input ltr">
                 <input class="text fullwidth" style="max-width:600px;" type="text" id="source" name="source" value="{{res['message']}}" readonly />
                 <input class="text fullwidth" style="max-width:600px;" id="trans_id" name="id" value="{{res['id']}}" type="hidden" />
@@ -27,7 +27,7 @@
             {% set lang = site.language|split('-')[0] %}                                                                              
               {% set message = 'message_' ~ lang %}                                                                              
               <div class="field " id="title-field-{{lang}}">
-                  <label for="{{site}}">{{site|upper|t}}</label>
+                  <label for="{{site}}">{{site|upper|t('translator-pro')}}</label>
                   <div class="input ltr">
                       <input class="text fullwidth" style="max-width:600px;" type="text" id="{{lang}}" name="{{lang}}" value="{{res[message]}}" />
                   </div>
@@ -37,7 +37,7 @@
 
         <div class="buttons clearafter">
             <button class="btn submit export-btn" name="submit" value="create">
-                {{ 'Save'|t }}
+                {{ 'Save'|t('translator-pro') }}
             </button>
           </div>
         </div>

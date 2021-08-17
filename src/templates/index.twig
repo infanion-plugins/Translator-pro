@@ -15,7 +15,7 @@
 {% extends parentLayout ?? '_layouts/cp' %}
 
 {% import "_includes/forms" as forms %}
-{% set title = "Translator Pro"|t %}
+{% set title = "Translator Pro"|t('translator-pro') %}
 {% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\translatorpro\\TranslatorproAsset") %}
 {% do view.registerAssetBundle("ip\\translatorpro\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
 
@@ -23,7 +23,7 @@
 
 <div id="wrapper">
  
-    <h4 for="engstring">{{'Search'|t}}</h4>
+    <h4 for="engstring">{{'Search'|t('translator-pro')}}</h4>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -38,7 +38,7 @@
         <table id="records_table" border='1' width="100%" class="paginated">
             <thead class="trans_table_head">
                 <tr>
-                    <th align="center">{{'Source string (en-US)'|t}}</th>
+                    <th align="center">{{'Source string (en-US)'|t('translator-pro')}}</th>
                     {% set sites = craft.app.sites.getAllSites() %}
                     {% for site in sites %}
 		                {% if site.enabled %}
@@ -46,7 +46,7 @@
                                 <th>{{site }}</th>
 		                    {% endif %}
                     {% endfor %}
-                    <th align="center">{{'Actions'|t}}</th>
+                    <th align="center">{{'Actions'|t('translator-pro')}}</th>
                 </tr>
             </thead>
             {% for res in result %}
@@ -60,7 +60,7 @@
                             <td class="colwidth-test">{{ res[message] }}</td>
                 {% endif %}
                         {% endfor %}
-                        <td id="add"><a href="translator-pro/edit?id={{res['id']}}&destination={{ craft.request.getHostInfo() ~ craft.request.getRequestUri() }}">{{'Add/Edit'|t}}</a></td>
+                        <td id="add"><a href="translator-pro/edit?id={{res['id']}}&destination={{ craft.app.request.hostInfo() ~ craft.app.request.url() }}">{{'Add/Edit'|t('translator-pro')}}</a></td>
                     </tr>
                 </tbody>
             {% endfor %}

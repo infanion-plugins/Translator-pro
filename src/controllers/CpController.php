@@ -70,7 +70,7 @@ class CpController extends Controller
             ]                                                                                                                                                     
         );
     }
-
+ 
     /**
      * save the updated translation
      */

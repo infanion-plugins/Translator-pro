@@ -20,7 +20,7 @@
 <div id="wrapper">
     <div id="row">
 <div id="first">
-<h4 for="engstring">{{'Source string'|t}}</h4>
+<h4 for="engstring">{{'Source string'|t('translator-pro')}}</h4>
 <input class="langfields" id="eng_string" type="text"  name="engstring" onkeyup="myFunction()">
 </div>
 {% set sites = craft.app.sites.getAllSites() %}
@@ -28,13 +28,13 @@
 {% if site.enabled %}
                         {% set lang = site.language|split('-')[0] %}
 <div id="first">
-<h4 for="{{lang}}string">{{lang|upper ~ ' ' ~ 'string'|t}}</h4>
+<h4 for="{{lang}}string">{{lang|upper ~ ' ' ~ 'string'|t('translator-pro')}}</h4>
 <input class="langfields" id="{{lang}}_string" type="text"  name="{{lang}}string">
 </div>
 {% endif %}
 {% endfor %}
 <div id="fourth">
-<button class="search_btn">{{'Search'|t}}</button>    
+<button class="search_btn">{{'Search'|t('translator-pro')}}</button>    
 </div>
 
 </div>
@@ -42,15 +42,15 @@
     <table id="records_table" border='1' width="100%">
             <thead>
                 <tr>
-                    <th align="center">{{'Source string'|t}}</th>
+                    <th align="center">{{'Source string'|t('translator-pro')}}</th>
                     {% set sites = craft.app.sites.getAllSites() %}
                     {% for site in sites %}
 		      {% if site.enabled %}
-                        {% set message = site.language|split('-')[0]|upper ~ ' ' ~ 'string'|t %}
+                        {% set message = site.language|split('-')[0]|upper ~ ' ' ~ 'string'|t('translator-pro') %}
                           <th>{{message }}</th>
 		      {% endif %}
                     {% endfor %}
-                    <th align="center">{{'Actions'|t}}</th>
+                    <th align="center">{{'Actions'|t('translator-pro')}}</th>
                 </tr>
             </thead>
             {% for res in result %}
@@ -64,7 +64,7 @@
                           <td>{{ res[message] }}</td>
 		      {% endif %}
                     {% endfor %}
-                    <td id="add"><a>{{'Add/Edit translation'|t}}</a></td>
+                    <td id="add"><a>{{'Add/Edit translation'|t('translator-pro')}}</a></td>
                 </tr>
             </tbody>
         {% endfor %}
