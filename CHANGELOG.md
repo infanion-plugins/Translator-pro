@@ -1,5 +1,8 @@
 # Translator Pro Changelog
 
+## 1.0.4 - 2021-08-23
+- Removed composer require-dev
+
 ## 1.0.3 - 2021-08-23
 - Added minimum-stability
 
