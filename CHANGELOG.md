@@ -1,5 +1,8 @@
 # Translator Pro Changelog
 
+## 1.0.3 - 2021-08-23
+- Required-dev removed from composer.json
+
 ## 1.0.2 - 2021-08-17
 - Updated required craft cms version to 3.5.0
 - Added translations to static strings
