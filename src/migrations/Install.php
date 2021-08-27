@@ -195,21 +195,26 @@ class Install extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
+        $tableSchema = Craft::$app->db->schema->getTableSchema('{{%source_message}}');
+        if($tableSchema === null) {
+            $this->createTable('{{%source_message}}', [
+                'id' => $this->primaryKey(),
+                'category' => $this->string(),
+                'message' => $this->string(255)->unique(),
 
-        $this->createTable('{{%source_message}}', [
-            'id' => $this->primaryKey(),
-            'category' => $this->string(),
-            'message' => $this->text()->unique(),
+            ], $tableOptions);
+        }
+        $tableSchema = Craft::$app->db->schema->getTableSchema('{{%message}}');
+        if($tableSchema === null) {
+            $this->createTable('{{%message}}', [
+                'id' => $this->integer()->notNull(),
+                'language' => $this->string(16)->notNull(),
+                'translation' => $this->text(),
+            ], $tableOptions);
 
-        ], $tableOptions);
+            $this->addPrimaryKey('pk_message_id_language', '{{%message}}', ['id', 'language']);
+        }
 
-        $this->createTable('{{%message}}', [
-            'id' => $this->integer()->notNull(),
-            'language' => $this->string(16)->notNull(),
-            'translation' => $this->text(),
-        ], $tableOptions);
-
-        $this->addPrimaryKey('pk_message_id_language', '{{%message}}', ['id', 'language']);
         $onUpdateConstraint = 'RESTRICT';
         if ($this->db->driverName === 'sqlsrv') {
             // 'NO ACTION' is equivalent to 'RESTRICT' in MSSQL

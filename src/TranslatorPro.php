@@ -171,7 +171,11 @@ class TranslatorPro extends Plugin
             __METHOD__
         );
 
-        Craft::$app->set('i18n', $config);
+        $is_pluginInstalled = Craft::$app->plugins->isPluginInstalled('translator-pro');
+        $is_pluginEnabled = Craft::$app->plugins->isPluginEnabled('translator-pro');
+        if($is_pluginInstalled == 1 && $is_pluginEnabled == 1){
+            Craft::$app->set('i18n', $config);
+        }
 
         Event::on(
             Plugins::class,
@@ -191,7 +195,7 @@ class TranslatorPro extends Plugin
     public function getCpNavItem()
     {
         $ret = parent::getCpNavItem();
-        $ret['label'] = Craft::t('translatorpro', 'Translator Pro');
+        $ret['label'] = Craft::t('translator-pro', 'Translator Pro');
 
         return $ret;
     }

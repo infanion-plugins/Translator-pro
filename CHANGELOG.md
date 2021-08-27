@@ -1,5 +1,8 @@
 # Translator Pro Changelog
 
+## 1.0.5 - 2021-08-27
+- bug fixes related to installation
+
 ## 1.0.4 - 2021-08-23
 - Removed composer require-dev
 
